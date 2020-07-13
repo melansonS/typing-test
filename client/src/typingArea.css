@@ -1,0 +1,13 @@
+
+.correct-word {
+    color:green;
+}
+
+.current-word {
+    text-decoration: underline;
+    color: white;
+}
+
+.incorrect-word {
+    color: darkred;
+}
