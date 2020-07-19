@@ -14,3 +14,28 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.close-modal {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+}
+
+.results-container {
+  background-color: #282c34;
+  border: 3px solid #bbb;
+  border-radius: 12px;
+  position: relative;
+  width: 70%;
+}
+
+.results-modal {
+  align-items: center;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+}
