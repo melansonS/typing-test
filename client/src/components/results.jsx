@@ -13,14 +13,14 @@ const Results = (props) => {
   return (
     <div className="results-container">
       {!storedName && storedName !== '' && (
-        <span className="name-reminder results-text">* Don't forget to set your name!</span>
+        <span className="name-reminder results-text">* Don&apos;t forget to set your name!</span>
       )}
       <h2 className="results-header">Results!</h2>
       <div className="results-text">
         Words per minute:
         {' '}
         {Math.round(results / 5)}
-        {typeof previousResults === "number" && (<ResultsDifference diff={Math.round(results / 5) - Math.round(previousResults / 5)} />)}
+        {typeof previousResults === 'number' && (<ResultsDifference diff={Math.round(results / 5) - Math.round(previousResults / 5)} />)}
       </div>
       <div className="results-text">
         Characters per minute:
@@ -30,7 +30,7 @@ const Results = (props) => {
       <div className="results-text">
         Accuracy:
         {' '}
-        {accuracy || "0"}
+        {accuracy || '0'}
         %
       </div>
       {incorrectWords[0] && (
@@ -57,9 +57,13 @@ const Results = (props) => {
 };
 
 Results.propTypes = {
-  incorrectWords: PropTypes.array,
-  previousResults: PropTypes.number,
-  results: PropTypes.number,
+  accuracy: PropTypes.number.isRequired,
+  incorrectWords: PropTypes.arrayOf(PropTypes.shape({
+    correct: PropTypes.string,
+    typed: PropTypes.string,
+  })).isRequired,
+  previousResults: PropTypes.number.isRequired,
+  results: PropTypes.number.isRequired,
 };
 
 export default Results;

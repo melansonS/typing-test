@@ -1,4 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, {
+  useEffect, useState, useRef, useCallback,
+} from 'react';
+import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import randomWords from 'random-words';
 import { localStoreResults, saveResults } from '../api';
@@ -19,7 +22,6 @@ const TypingArea = (props) => {
   const [isActive, setIsActive] = useState(null);
   const [previousResults, setPreviousResults] = useState(null);
   const [results, setResults] = useState(null);
-  const [resultsId, setResultsId] = useState();
   const [seconds, setSeconds] = useState(10);
   const [showResults, setShowResults] = useState(false);
   const [testText, setTestText] = useState([]);
@@ -42,8 +44,8 @@ const TypingArea = (props) => {
     }
   }, []);
 
-  const reset = () => {
-    console.log({ correctCharCount, incorrectCharCount });
+  const reset = useCallback(() => {
+    const id = nanoid();
     setAccuracy(Math.round((correctCharCount / (correctCharCount + incorrectCharCount)) * 100));
     setCorrectCharCount(0);
     setCurrentWord('');
@@ -67,28 +69,17 @@ const TypingArea = (props) => {
     const resultsData = {
       cpm: correctCharCount,
       date: Date.now(),
-      id: resultsId,
+      id,
       name,
       wpm: Math.round(correctCharCount / 5),
     };
-    const diff = typeof results === "number" ? (Math.round(correctCharCount / 5) - Math.round(results / 5)) : null;
+    saveResults(resultsData, feedLeaderBoard);
+    const diff = typeof results === 'number' ? (Math.round(correctCharCount / 5) - Math.round(results / 5)) : null;
     localStoreResults(resultsData, diff);
-  };
+  }, [correctCharCount, feedLeaderBoard, incorrectCharCount, name, results]);
 
   useEffect(() => {
     let timer = null;
-    if (seconds <= 0) {
-      reset();
-      const id = nanoid();
-      setResultsId(id);
-      const resultsData = {
-        date: Date.now(),
-        wpm: Math.round(correctCharCount / 5),
-        id,
-        name,
-      };
-      saveResults(resultsData, feedLeaderBoard);
-    }
     if (isActive) {
       timer = setInterval(() => {
         setSeconds((count) => count - 1);
@@ -98,6 +89,12 @@ const TypingArea = (props) => {
     }
     return () => clearInterval(timer);
   }, [isActive, seconds]);
+
+  useEffect(() => {
+    if (seconds <= 0) {
+      reset();
+    }
+  }, [isActive, seconds, reset]);
 
   const handleInput = (e) => {
     // add more random words!
@@ -117,7 +114,6 @@ const TypingArea = (props) => {
     if (e.target.value[charIndex] === currentWord[charIndex]) {
       setCorrectCharCount(correctCharCount + 1);
     } else if (e.target.value !== ' ') {
-      console.log('Error!');
       setIncorrectCharCount(incorrectCharCount + 1);
     }
     return e.target.value !== ' ' ? setInputValue(e.target.value) : null;
@@ -126,13 +122,13 @@ const TypingArea = (props) => {
   const handleKeyDown = (event) => {
     if (!isActive) return;
     if ((event.code === 'Space' && inputRef.current.value !== '') || inputRef.current.value.includes(' ')) {
-      const inputValue = inputRef.current.value.includes(' ')
+      const currentValue = inputRef.current.value.includes(' ')
         ? inputRef.current.value.slice(0, -1)
         : inputRef.current.value;
-      if (inputValue !== testText[currentWordIndex]) {
+      if (currentValue !== testText[currentWordIndex]) {
         const newIncorrectWords = incorrectWords;
         newIncorrectWords.push({
-          typed: inputValue,
+          typed: currentValue,
           correct: testText[currentWordIndex],
         });
         setIncorrectWords(newIncorrectWords);
@@ -219,6 +215,11 @@ const TypingArea = (props) => {
     </div>
 
   );
+};
+
+TypingArea.propTypes = {
+  name: PropTypes.string.isRequired,
+  feedLeaderBoard: PropTypes.func.isRequired,
 };
 
 export default TypingArea;

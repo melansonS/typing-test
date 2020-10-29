@@ -21,7 +21,7 @@ const ResultsDifference = (props) => {
 };
 
 ResultsDifference.propTypes = {
-  diff: PropTypes.number,
+  diff: PropTypes.number.isRequired,
 };
 
 export default ResultsDifference;

@@ -20,9 +20,9 @@ const InputBox = (props) => {
 };
 
 InputBox.propTypes = {
-  handleInput: PropTypes.func,
-  inputRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
-  inputValue: PropTypes.string,
+  handleInput: PropTypes.func.isRequired,
+  inputRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
+  inputValue: PropTypes.string.isRequired,
 };
 
 export default InputBox;

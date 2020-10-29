@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { MdTimer } from 'react-icons/md';
 import { getMostRecent, getTopThree } from '../api';
-
-import './container.css';
 import LeaderBoard from './leaderBoard';
 import LocalStats from './localStats';
 import TypingArea from './typingArea';
+import './container.css';
 
 function Container() {
   const [name, setName] = useState(localStorage.getItem('name') || '');
-  const [topThree, setTopThree] = useState([{},{},{}]);
-  const [mostRecent, setMostRecent] = useState([]);
+  const [topThree, setTopThree] = useState([{}, {}, {}]);
+  const [mostRecent, setMostRecent] = useState(0);
 
   const feedLeaderBoard = async (id) => {
-    console.log("FEEDLEADERBOARD:", id)
     setMostRecent(await getMostRecent(id));
     setTopThree(await getTopThree());
   };

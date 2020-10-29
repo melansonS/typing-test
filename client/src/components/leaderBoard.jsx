@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import { BiAward } from 'react-icons/bi';
 import './leaderBoard.css';
@@ -23,9 +24,20 @@ const LeaderBoard = (props) => {
       </ol>
       <span className="most-recent">
         Most Recent:
-        {mostRecent.wpm || 0}
+        {mostRecent}
       </span>
     </div>
   );
 };
+
+LeaderBoard.propTypes = {
+  mostRecent: PropTypes.number.isRequired,
+  topThree: PropTypes.arrayOf(PropTypes.shape({
+    date: PropTypes.number,
+    id: PropTypes.string,
+    name: PropTypes.string,
+    wpm: PropTypes.number,
+  })).isRequired,
+};
+
 export default LeaderBoard;
