@@ -41,7 +41,7 @@ const LocalStats = (props) => {
           {' '}
           Best:
           <span className="stat-value">
-            {localStats.reduce((a, b) => ((a.score > b.score) ? a : b)).score}
+            {localStats.reduce((a, b) => ((a.wpm > b.wpm) ? a : b)).wpm}
           </span>
         </div>
         {localStats.length > 1 && (
@@ -49,7 +49,7 @@ const LocalStats = (props) => {
             {' '}
             Average:
             <span className="stat-value">
-              {Math.round(localStats.reduce((a, b) => ((a.score || a) + b.score)) / localStats.length)}
+              {Math.round(localStats.reduce((a, b) => ((typeof a.wpm === "number" || a) + b.wpm)) / localStats.length)}
             </span>
           </div>
         )}
@@ -61,7 +61,7 @@ const LocalStats = (props) => {
               {' '}
               -
               {' '}
-              {stat.score}
+              {stat.wpm}
               {stat.diff && (<ResultsDifference diff={stat.diff} />)}
             </li>
           ))}

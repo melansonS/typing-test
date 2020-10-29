@@ -6,11 +6,9 @@ import ResultsDifference from './resultsDifference';
 
 const Results = (props) => {
   const {
-    incorrectWords, name, previousResults, updateName, results, resultsId,
+    accuracy, incorrectWords, previousResults, updateName, results, resultsId,
   } = props;
-
   const storedName = localStorage.getItem('name');
-  console.log('IN RESULTS, stored name:', storedName);
 
   return (
     <div className="results-container">
@@ -20,13 +18,20 @@ const Results = (props) => {
       <h2 className="results-header">Results!</h2>
       <div className="results-text">
         Words per minute:
+        {' '}
         {Math.round(results / 5)}
+        {typeof previousResults === "number" && (<ResultsDifference diff={Math.round(results / 5) - Math.round(previousResults / 5)} />)}
       </div>
       <div className="results-text">
         Characters per minute:
         {' '}
         {results}
-        {previousResults && (<ResultsDifference diff={results - previousResults} />)}
+      </div>
+      <div className="results-text">
+        Accuracy:
+        {' '}
+        {accuracy || "0"}
+        %
       </div>
       {incorrectWords[0] && (
       <div>

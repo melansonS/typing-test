@@ -9,19 +9,21 @@ import InputBox from './inputBox';
 
 const TypingArea = (props) => {
   const { name, setMostRecent, setTopThree } = props;
+  const [accuracy, setAccuracy] = useState(0);
   const [correctCharCount, setCorrectCharCount] = useState(0);
   const [currentWord, setCurrentWord] = useState('');
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [inputValue, setInputValue] = useState('');
+  const [incorrectCharCount, setIncorrectCharCount] = useState(0);
   const [incorrectWords, setIncorrectWords] = useState([]);
+  const [inputValue, setInputValue] = useState('');
   const [isActive, setIsActive] = useState(null);
   const [previousResults, setPreviousResults] = useState(null);
   const [results, setResults] = useState(null);
+  const [resultsId, setResultsId] = useState();
   const [seconds, setSeconds] = useState(10);
   const [showResults, setShowResults] = useState(false);
   const [testText, setTestText] = useState([]);
   const [wordsTyped, setWordsTyped] = useState([]);
-  const [resultsId, setResultsId] = useState();
   const inputRef = useRef();
 
   const getText = async () => {
@@ -34,37 +36,42 @@ const TypingArea = (props) => {
   useEffect(() => {
     getText();
     if (localStorage.getItem('data') && JSON.parse(localStorage.getItem('data'))[0]) {
-      const prev = JSON.parse(localStorage.getItem('data'))[0].score;
+      const prev = JSON.parse(localStorage.getItem('data'))[0].cpm;
       setResults(prev);
       setPreviousResults(prev);
     }
   }, []);
 
   const reset = () => {
-    setPreviousResults(results);
+    console.log({ correctCharCount, incorrectCharCount });
+    setAccuracy(Math.round((correctCharCount / (correctCharCount + incorrectCharCount)) * 100));
     setCorrectCharCount(0);
-    setCurrentWordIndex(0);
     setCurrentWord('');
+    setCurrentWordIndex(0);
+    setIncorrectCharCount(0);
     setInputValue('');
     setIsActive(false);
-    setShowResults(true);
-    setResults(correctCharCount);
+    setPreviousResults(results);
     // setSeconds(60);
     setSeconds(10);
-    getText();
+    setShowResults(true);
+    setResults(correctCharCount);
     setWordsTyped([]);
-    // reset test-text element
+    getText();
+    // pull focus off of the input box to avoid starting the nex test unnintentionally
     document.getElementById('focus-redirect').focus();
+    // reset test-text element
     const element = document.getElementsByClassName('test-words')[0];
     element.scrollTop = 0;
     // store results locally
     const resultsData = {
+      cpm: correctCharCount,
       date: Date.now(),
-      score: correctCharCount,
       id: resultsId,
       name,
+      wpm: Math.round(correctCharCount / 5),
     };
-    const diff = results ? (correctCharCount - results) : null;
+    const diff = typeof results === "number" ? (Math.round(correctCharCount / 5) - Math.round(results / 5)) : null;
     localStoreResults(resultsData, diff);
   };
 
@@ -76,13 +83,11 @@ const TypingArea = (props) => {
       setResultsId(id);
       const resultsData = {
         date: Date.now(),
-        score: correctCharCount,
+        wpm: Math.round(correctCharCount / 5),
         id,
         name,
       };
-      const diff = previousResults ? (correctCharCount - previousResults) : null;
-      saveResults(resultsData, setMostRecent, setTopThree);
-      // localStoreResults(resultsData, diff);
+      // saveResults(resultsData, setMostRecent, setTopThree);
     }
     if (isActive) {
       timer = setInterval(() => {
@@ -111,6 +116,9 @@ const TypingArea = (props) => {
     const charIndex = e.target.value.length - 1;
     if (e.target.value[charIndex] === currentWord[charIndex]) {
       setCorrectCharCount(correctCharCount + 1);
+    } else if (e.target.value !== ' ') {
+      console.log('Error!');
+      setIncorrectCharCount(incorrectCharCount + 1);
     }
     return e.target.value !== ' ' ? setInputValue(e.target.value) : null;
   };
@@ -202,8 +210,8 @@ const TypingArea = (props) => {
       />
       {showResults && (
         <Results
+          accuracy={accuracy}
           incorrectWords={incorrectWords}
-          name={name}
           previousResults={previousResults}
           updateName={updateName}
           results={results}

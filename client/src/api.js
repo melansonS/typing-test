@@ -50,7 +50,6 @@ export const getTopThree = async () => {
 };
 
 export const localStoreResults = (data, diff) => {
-  console.log('diff?', diff);
   const udpatedData = data;
   if (diff) {
     udpatedData.diff = diff;

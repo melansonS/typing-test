@@ -6,7 +6,7 @@ const getMostRecent = async () => {
 }
 
 const getTopThree = async () => {
-    const topThree = await Results.find().sort({score: -1}).limit(3);
+    const topThree = await Results.find().sort({wpm: -1}).limit(3);
     return topThree;
 }
 

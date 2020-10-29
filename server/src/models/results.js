@@ -13,7 +13,7 @@ const resultsSchema = new Schema({
     name: {
         type: String,
     },
-    score: {
+    wpm: {
         type: Number,
         required: true,
     }

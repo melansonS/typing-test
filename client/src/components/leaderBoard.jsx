@@ -11,19 +11,19 @@ const LeaderBoard = (props) => {
       <h4>Leaderboard:</h4>
       <BiAward />
       <ol>
-        {topThree.map((leader, index) => (
+        {topThree.map((leader) => (
           <li key={`li-${nanoid()}`}>
             {leader.name || 'AAA'}
             {' '}
             -
             {' '}
-            {leader.score}
+            {leader.wpm}
           </li>
         ))}
       </ol>
       <span className="most-recent">
         Most Recent:
-        {mostRecent.score}
+        {mostRecent.wpm}
       </span>
     </div>
   );
