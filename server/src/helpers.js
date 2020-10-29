@@ -1,7 +1,7 @@
 const Results = require('./models/results')
 
-const getMostRecent = async () => {
-    const mostRecent = await Results.find().sort({date: -1}).limit(1);
+const getMostRecent = async (id) => {
+    const mostRecent = await Results.find({id:{$ne: id}}).sort({date: -1}).limit(1);
     return mostRecent[0];
 }
 

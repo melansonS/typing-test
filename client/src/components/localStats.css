@@ -1,3 +1,8 @@
+.graph-icon {
+  margin-top: 0.6vh;
+  color: #8997B3;
+}
+
 .local-stats {
   margin-top: 3vh;
 }
@@ -9,17 +14,13 @@
 
 .local-stats li {
   display: flex;
+  font-size: 18px;
   justify-content: space-between;
-  font-size: 2vmin;
-}
-
-.local-stats svg {
-  margin-top: 0.5vh;
 }
 
 .local-stats ul {
   border-right: 1px solid white;
-  margin-top: 2vh;
+  margin-top: 4vh;
   padding: 0;
   padding-right: 1.5vw;
   text-align: start;
@@ -32,7 +33,7 @@
   border-radius: 4px 4px 0 0;
   color: white;
   font-family: 'Roboto Mono', monospace;
-  font-size: calc(2px + 2vmin);
+  font-size: 20px;
   font-weight: 500;
   outline: none;
   text-align: center;
@@ -46,11 +47,12 @@
 .stat-details {
   align-items: baseline;
   display: flex;
+  font-size: 20px;
   text-align: start;
 }
 
 .stat-value {
-  font-size: calc(2px + 2vmin);
+  font-size: 18px;
 }
 
 @media only screen and (min-width:1921px) {
@@ -59,8 +61,20 @@
   }
 }
 
-@media only screen and (max-width:877px) {
+@media only screen and (max-width: 1012px) {
   .local-stats li {
-    font-size: calc(2px + 2vmin);
+    font-size: 1.8vw;
+  }
+  .stat-details, .stat-value {
+    font-size: 2vw;
+  }
+  .name-input {
+    font-size: calc(2px + 2vw);
+  }
+}
+
+@media only screen and (max-width: 812px) {
+  .name-input {
+    width: 60px;
   }
 }

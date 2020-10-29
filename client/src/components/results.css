@@ -9,11 +9,12 @@
 }
 
 .errors-list li {
-    font-size: calc(4px + 2vmin);
+    font-size: 23px;
 }
 
 .name-reminder {
-    font-size: 2vmin;
+    color: #B43829;
+    font-size: 18px;
     text-align: start;
 }
 
@@ -26,4 +27,13 @@
 
 .results-text {
     text-align: left;
+}
+
+@media only screen and (max-width: 1012px) {
+    .errors-list li {
+        font-size: calc(4px + 2vw);
+    }
+    .name-reminder {
+        font-size: 2vw;
+    }
 }

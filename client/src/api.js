@@ -2,7 +2,7 @@ const API_URL = 'http://localhost:2000';
 
 const storageEvent = new Event('storageEvent');
 
-export const saveResults = async (data, setMostRecent, setTopThree) => {
+export const saveResults = async (data, feedLeaderBoard) => {
   const response = await fetch(`${API_URL}/submit-result`, {
     method: 'POST',
     headers: {
@@ -12,28 +12,17 @@ export const saveResults = async (data, setMostRecent, setTopThree) => {
   });
   const json = await response.json();
   if (json.success) {
-    setMostRecent(json.mostRecent);
-    setTopThree(json.topThree);
+    feedLeaderBoard(data.id);
   }
 };
 
-export const updateName = async (resultsId) => {
-  const name = prompt('What is your name?');
-  const data = { id: resultsId, name };
-  const response = await fetch(`${API_URL}/add-name`, {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: {
-      'content-type': 'application/json',
-    },
-  });
-  const json = await response.json();
-  console.log(json);
-};
-
-export const getMostRecent = async () => {
+export const getMostRecent = async (id) => {
   const response = await fetch(`${API_URL}/most-recent`, {
-    method: 'GET',
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify({id}),
   });
   const json = await response.json();
   console.log('most recent:', json);

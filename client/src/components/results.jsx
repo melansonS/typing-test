@@ -6,7 +6,7 @@ import ResultsDifference from './resultsDifference';
 
 const Results = (props) => {
   const {
-    accuracy, incorrectWords, previousResults, updateName, results, resultsId,
+    accuracy, incorrectWords, previousResults, results,
   } = props;
   const storedName = localStorage.getItem('name');
 
@@ -52,7 +52,6 @@ const Results = (props) => {
         </ul>
       </div>
       )}
-      <button type="button" onClick={() => updateName(resultsId)}>Save score?</button>
     </div>
   );
 };
@@ -60,9 +59,7 @@ const Results = (props) => {
 Results.propTypes = {
   incorrectWords: PropTypes.array,
   previousResults: PropTypes.number,
-  updateName: PropTypes.func,
   results: PropTypes.number,
-  resultsId: PropTypes.string,
 };
 
 export default Results;

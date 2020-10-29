@@ -89,9 +89,10 @@ app.get('/get-text', async (req, res, next) => {
     }
 });
 
-app.get('/most-recent', async (req, res, next) => {
+app.post('/most-recent', async (req, res, next) => {
+    console.log("most recent hit:", req.body);
     try {
-        const mostRecent = await helpers.getMostRecent();
+        const mostRecent = await helpers.getMostRecent(req.body.id);
         res.json(mostRecent);
     } catch (error) {
         next(error);

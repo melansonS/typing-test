@@ -22,7 +22,7 @@ const LocalStats = (props) => {
   return (
     <div className="local-stats">
       <h4>Your Stats:</h4>
-      <GoGraph />
+      <GoGraph className="graph-icon"/>
       <div className="stat-details">
         Name:
         {' '}

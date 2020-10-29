@@ -4,11 +4,11 @@
 }
 
 .negative {
-  color: darkred;
+  color: #B43829;
 }
 
 .positive {
-  color: green;
+  color: #418947;
 }
 
 .results-difference svg {

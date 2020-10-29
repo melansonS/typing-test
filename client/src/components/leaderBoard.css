@@ -4,13 +4,25 @@
 }
 
 .leaderboard ol {
-  /* list-style-type: none; */
-  /* padding-inline-start: 20px; */
   text-align: start;
-  font-size: calc(2px + 2vmin);
+  font-size: 23px;
+}
+
+.leaderboard svg {
+  color: #D1AB35;
 }
 
 .most-recent {
-  font-size: calc(2px + 2vmin);
-  margin-top: 1vh;
+  font-size: 20px;
+  padding-top: 2vh;
+}
+
+@media only screen and (max-width: 1012px) {
+  .leaderboard ol {
+    font-size: calc(2px + 2vw);
+  }
+
+  .most-recent{
+    font-size: 2vw;
+  }
 }

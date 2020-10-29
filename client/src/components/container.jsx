@@ -12,8 +12,9 @@ function Container() {
   const [topThree, setTopThree] = useState([]);
   const [mostRecent, setMostRecent] = useState([]);
 
-  const init = async () => {
-    setMostRecent(await getMostRecent());
+  const feedLeaderBoard = async (id) => {
+    console.log("FEEDLEADERBOARD:", id)
+    setMostRecent(await getMostRecent(id));
     setTopThree(await getTopThree());
   };
 
@@ -23,7 +24,7 @@ function Container() {
   };
 
   useEffect(() => {
-    init();
+    feedLeaderBoard();
   }, []);
 
   return (
@@ -36,6 +37,7 @@ function Container() {
           </header>
           <TypingArea
             name={name === '' ? 'AAA' : name}
+            feedLeaderBoard={feedLeaderBoard}
             setMostRecent={setMostRecent}
             setTopThree={setTopThree}
           />

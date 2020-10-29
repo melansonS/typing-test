@@ -1,5 +1,5 @@
 .correct-word {
-    color:green;
+    color:#418947;
 }
 
 .correct-character {
@@ -15,11 +15,11 @@
 }
 
 .incorrect-word {
-    color: darkred;
+    color: #B43829;
 }
 
 .incorrect-character {
-    color: darkred;
+    color: #B43829;
 }
 
 .test-words-container {

@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { nanoid } from 'nanoid';
 import randomWords from 'random-words';
-import { localStoreResults, updateName, saveResults } from '../api';
+import { localStoreResults, saveResults } from '../api';
 import StatsFields from './statsFields';
 import Results from './results';
 import './typingArea.css';
 import InputBox from './inputBox';
 
 const TypingArea = (props) => {
-  const { name, setMostRecent, setTopThree } = props;
+  const { name, feedLeaderBoard } = props;
   const [accuracy, setAccuracy] = useState(0);
   const [correctCharCount, setCorrectCharCount] = useState(0);
   const [currentWord, setCurrentWord] = useState('');
@@ -87,7 +87,7 @@ const TypingArea = (props) => {
         id,
         name,
       };
-      // saveResults(resultsData, setMostRecent, setTopThree);
+      saveResults(resultsData, feedLeaderBoard);
     }
     if (isActive) {
       timer = setInterval(() => {
@@ -213,9 +213,7 @@ const TypingArea = (props) => {
           accuracy={accuracy}
           incorrectWords={incorrectWords}
           previousResults={previousResults}
-          updateName={updateName}
           results={results}
-          resultsId={resultsId}
         />
       )}
     </div>
