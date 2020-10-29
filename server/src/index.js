@@ -3,21 +3,19 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const SampleText = require('./models/sampleText')
-const Results = require('./models/results')
+const SampleText = require('./models/sampleText');
+const Results = require('./models/results');
 
 const helpers = require('./helpers');
 
 require('dotenv').config();
-mongoose.connect('mongodb+srv://bob:123@cluster0-dhphy.mongodb.net/<dbname>?retryWrites=true&w=majority', 
-{
-    useNewUrlParser: true,
-    useUnifiedTopology: true 
-});
+mongoose.connect(process.env.MONGO_URl, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true 
+    });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-  // we're connected!
   console.log("connected to the db");
 });
 
@@ -48,7 +46,7 @@ app.post('/add-text', async (req, res, next) => {
 });
 
 app.post('/submit-result', cors(), async (req, res, next) => {
-    console.log("SUBMITION HIT", req.body);
+    console.log("Submition hit", req.body);
     try {
         const newResults = new Results(req.body);
         const savedResult = await newResults.save();
@@ -67,16 +65,14 @@ app.post('/submit-result', cors(), async (req, res, next) => {
 });
 
 app.post('/add-name', async (req, res, next) => {
-    console.log("ADD NAME HIT", req.body);
+    console.log("add-name hit", req.body);
     try {
         const id = req.body.id;
         const res = await Results.updateOne({'id': id}, {name: req.body.name});
-        console.log(res)
         if(res.n < 1){
             throw new Error('Entry not found!');
         }
-        // const topThree =  await helpers.getTopThree();
-        const topThree =  "await helpers.getTopThree()";
+        const topThree =  await helpers.getTopThree();
         res.json({success: true, topThree});
     }catch (error) {
         next(error);
@@ -87,11 +83,10 @@ app.get('/get-text', async (req, res, next) => {
     try {
         const text = await SampleText.find()
         const rand = Math.floor(Math.random() * (text.length));
-        console.log("RANDOM NUMBER!? - ",rand)
         res.json({text: text[rand].text});
     } catch (error) {
         next(error);
-    };
+    }
 });
 
 app.get('/most-recent', async (req, res, next) => {
@@ -100,7 +95,7 @@ app.get('/most-recent', async (req, res, next) => {
         res.json(mostRecent);
     } catch (error) {
         next(error);
-    };
+    }
 });
 
 app.get('/top-three', async (req, res, next) => {
@@ -109,7 +104,7 @@ app.get('/top-three', async (req, res, next) => {
         res.json(topThree);
     } catch (error) {
         next(error);
-    };
+    }
 });
 
 app.use(middlewares.notFound);
