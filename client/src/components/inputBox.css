@@ -1,0 +1,26 @@
+#focus-redirect {
+  bottom: 5px;
+  border: none;
+  height: 0;
+  left:50%;
+  outline: none;
+  position: absolute;
+  width: 0;
+  z-index: -1;
+}
+
+#input {
+  font-size: calc(4px + 2vmin);
+  margin-top: 2vh;
+  outline: none;
+  text-align: center;
+  z-index: 1;
+}
+
+#input:focus::placeholder {
+  color: transparent;
+}
+
+.input-box {
+  position: relative;
+}

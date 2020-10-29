@@ -1,0 +1,29 @@
+.error-header {
+    text-decoration: underline;
+    font-weight: 400;
+}
+
+.errors-list {
+    text-align: start;
+    overflow: auto;
+}
+
+.errors-list li {
+    font-size: calc(4px + 2vmin);
+}
+
+.name-reminder {
+    font-size: 2vmin;
+    text-align: start;
+}
+
+.results-container {
+    border-top: 1px solid white;
+    margin-top: 2vh;
+    max-height: 40vw;
+    padding-left: 1vw;
+}
+
+.results-text {
+    text-align: left;
+}

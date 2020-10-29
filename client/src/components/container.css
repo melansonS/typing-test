@@ -1,0 +1,38 @@
+.container {
+  width: 80%;
+}
+
+.container-aside {
+  border-left: 1px solid white;
+  font-size: calc(4px + 2vmin);
+  padding-left: 1vw;
+  padding-right: 1vw;
+}
+
+.container-body {
+  display: flex;
+  justify-content: center;
+  margin-top: 4vh;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header svg {
+  font-size: 2em;
+  padding-left: 2vw;
+}
+
+@media only screen and (max-width: 877px) {
+  .container {
+    width: 94%;
+  }
+}
+@media only screen and (max-width: 616px) {
+  .container {
+    width: 100%;
+  }
+}

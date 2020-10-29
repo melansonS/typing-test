@@ -1,0 +1,16 @@
+.leaderboard h4 {
+  font-weight: 400;
+  text-decoration: underline;
+}
+
+.leaderboard ol {
+  /* list-style-type: none; */
+  /* padding-inline-start: 20px; */
+  text-align: start;
+  font-size: calc(2px + 2vmin);
+}
+
+.most-recent {
+  font-size: calc(2px + 2vmin);
+  margin-top: 1vh;
+}

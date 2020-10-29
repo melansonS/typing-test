@@ -1,0 +1,59 @@
+.correct-word {
+    color:green;
+}
+
+.correct-character {
+    color: rgba(255,255,255,0.2);
+}
+
+.current-word-char {
+    text-decoration: underline;
+}
+
+.current-word, .word-span {
+    height: 38px;
+}
+
+.incorrect-word {
+    color: darkred;
+}
+
+.incorrect-character {
+    color: darkred;
+}
+
+.test-words-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.test-words {
+    font-size: 28px;
+    height: calc(38px*3);
+    margin-top: 2vh;
+    overflow-y: hidden;
+    padding-right: 1vw;
+    width: 40vw;
+}
+
+.test-words::-webkit-scrollbar {
+    /* display: none; */
+}
+
+@media only screen and (max-width: 877px) {
+    .test-words {
+        font-size: 20px;
+        height: calc(26px*3);
+        width: 55vw;
+    }
+}
+
+@media only screen and (max-width: 616px) {
+    .test-words {
+        font-size: 16px;
+        height: calc(21px*3);
+        width: 55vw;
+    }
+}

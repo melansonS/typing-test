@@ -1,0 +1,66 @@
+.local-stats {
+  margin-top: 3vh;
+}
+
+.local-stats h4 {
+  font-weight: 400;
+  text-decoration: underline;
+}
+
+.local-stats li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 2vmin;
+}
+
+.local-stats svg {
+  margin-top: 0.5vh;
+}
+
+.local-stats ul {
+  border-right: 1px solid white;
+  margin-top: 2vh;
+  padding: 0;
+  padding-right: 1.5vw;
+  text-align: start;
+}
+
+.name-input {
+  background-color: #282c34;
+  border: none;
+  border-bottom: 1px solid white;
+  border-radius: 4px 4px 0 0;
+  color: white;
+  font-family: 'Roboto Mono', monospace;
+  font-size: calc(2px + 2vmin);
+  font-weight: 500;
+  outline: none;
+  text-align: center;
+  width: 80px;
+}
+
+.name-input:hover {
+  background-color: #49505c;
+}
+
+.stat-details {
+  align-items: baseline;
+  display: flex;
+  text-align: start;
+}
+
+.stat-value {
+  font-size: calc(2px + 2vmin);
+}
+
+@media only screen and (min-width:1921px) {
+  .name-input {
+    width: 120px;
+  }
+}
+
+@media only screen and (max-width:877px) {
+  .local-stats li {
+    font-size: calc(2px + 2vmin);
+  }
+}

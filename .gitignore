@@ -27,4 +27,4 @@ yarn-error.log*
 .env
 
 #Todo list
-todo.txt
+.todo.txt
