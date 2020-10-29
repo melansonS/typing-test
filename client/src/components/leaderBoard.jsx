@@ -23,7 +23,7 @@ const LeaderBoard = (props) => {
       </ol>
       <span className="most-recent">
         Most Recent:
-        {mostRecent.wpm}
+        {mostRecent.wpm || 0}
       </span>
     </div>
   );

@@ -20,9 +20,16 @@
 @media only screen and (max-width: 1012px) {
   .leaderboard ol {
     font-size: calc(2px + 2vw);
+    padding-inline-start: 4.5vw;
   }
 
   .most-recent{
     font-size: 2vw;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .leaderboard ol {
+    padding-inline-start: 5vw;
   }
 }

@@ -9,7 +9,7 @@ import TypingArea from './typingArea';
 
 function Container() {
   const [name, setName] = useState(localStorage.getItem('name') || '');
-  const [topThree, setTopThree] = useState([]);
+  const [topThree, setTopThree] = useState([{},{},{}]);
   const [mostRecent, setMostRecent] = useState([]);
 
   const feedLeaderBoard = async (id) => {
