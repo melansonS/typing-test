@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "name": "typing-test",
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@now/node-server"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/.*",
+      "dest": "src/index.js"
+    }
+  ],
+  "alias": [
+    "typing-test"
+  ]
+}

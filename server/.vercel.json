@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "name": "typing-test",
+  "builds": [
+    {
+      "src": "src/index.js",
+      "use": "@now/node-server"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/.*",
+      "dest": "src/index.js"
+    }
+  ],
+  "alias": [
+    "typing-test"
+  ],
+  "env": {
+    "CORS_ORIGIN": "",
+    "NODE_ENV": "production",
+    "PORT": 2000,
+    "SECRET": "@mongourl"
+  }
+}
