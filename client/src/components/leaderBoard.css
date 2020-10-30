@@ -12,6 +12,13 @@
   color: #D1AB35;
 }
 
+.loading-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 90px;
+}
+
 .most-recent {
   font-size: 20px;
   padding-top: 2vh;
@@ -23,6 +30,10 @@
     padding-inline-start: 4.5vw;
   }
 
+  .loading-container {
+    height: 9vw;
+  }
+
   .most-recent{
     font-size: 2vw;
   }
@@ -31,5 +42,10 @@
 @media only screen and (max-width: 500px) {
   .leaderboard ol {
     padding-inline-start: 5vw;
+  }
+
+  .loading-container .css-1ujetdd {
+    height: 25px;
+    width: 25px;
   }
 }

@@ -10,10 +10,13 @@ function Container() {
   const [name, setName] = useState(localStorage.getItem('name') || '');
   const [topThree, setTopThree] = useState([{}, {}, {}]);
   const [mostRecent, setMostRecent] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   const feedLeaderBoard = async (id) => {
     setMostRecent(await getMostRecent(id));
-    setTopThree(await getTopThree());
+    const ret = await getTopThree();
+    setIsLoading(false);
+    setTopThree(ret);
   };
 
   const updateName = (newName) => {
@@ -41,7 +44,7 @@ function Container() {
           />
         </div>
         <div className="container-aside">
-          <LeaderBoard mostRecent={mostRecent} topThree={topThree} />
+          <LeaderBoard isLoading={isLoading} mostRecent={mostRecent} topThree={topThree} />
           <LocalStats name={name} setName={updateName} />
         </div>
       </div>
