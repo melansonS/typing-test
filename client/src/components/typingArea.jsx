@@ -110,7 +110,10 @@ const TypingArea = (props) => {
     }
 
     const charIndex = e.target.value.length - 1;
-    if (e.target.value[charIndex] === currentWord[charIndex]) {
+    const typedChar = e.target.value[charIndex] 
+      ? e.target.value[charIndex].toLowerCase() 
+      : null;
+    if (typedChar === currentWord[charIndex]) {
       setCorrectCharCount(correctCharCount + 1);
     } else if (e.target.value !== ' ') {
       setIncorrectCharCount(incorrectCharCount + 1);
@@ -122,8 +125,8 @@ const TypingArea = (props) => {
     if (!isActive) return;
     if ((event.code === 'Space' && inputRef.current.value !== '') || inputRef.current.value.includes(' ')) {
       const currentValue = inputRef.current.value.includes(' ')
-        ? inputRef.current.value.slice(0, -1)
-        : inputRef.current.value;
+        ? inputRef.current.value.slice(0, -1).toLowerCase()
+        : inputRef.current.value.toLowerCase();
       if (currentValue !== testText[currentWordIndex]) {
         const newIncorrectWords = incorrectWords;
         newIncorrectWords.push({
@@ -133,7 +136,7 @@ const TypingArea = (props) => {
         setIncorrectWords(newIncorrectWords);
       }
       const newArr = wordsTyped;
-      newArr.push(inputValue);
+      newArr.push(currentValue);
       setWordsTyped(newArr);
       setInputValue('');
       setCurrentWordIndex(currentWordIndex + 1);
@@ -178,7 +181,10 @@ const TypingArea = (props) => {
                 <span className="current-word" key={`span-${nanoid()}`}>
                   {currentWord && currentWord.split('').map((char, index) => {
                     let newClassName = 'current-word-char';
-                    if (char === inputValue.split('')[index]) {
+                    const typedChar = inputValue.split('')[index]
+                      ? inputValue.split('')[index].toLowerCase() 
+                      : null;
+                    if (char === typedChar) {
                       newClassName += ' correct-character';
                     } else if (index < inputValue.split('').length) {
                       newClassName += ' incorrect-character';
