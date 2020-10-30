@@ -22,7 +22,7 @@ const TypingArea = (props) => {
   const [isActive, setIsActive] = useState(null);
   const [previousResults, setPreviousResults] = useState(null);
   const [results, setResults] = useState(null);
-  const [seconds, setSeconds] = useState(10);
+  const [seconds, setSeconds] = useState(60);
   const [showResults, setShowResults] = useState(false);
   const [testText, setTestText] = useState([]);
   const [wordsTyped, setWordsTyped] = useState([]);
@@ -54,8 +54,7 @@ const TypingArea = (props) => {
     setInputValue('');
     setIsActive(false);
     setPreviousResults(results);
-    // setSeconds(60);
-    setSeconds(10);
+    setSeconds(60);
     setShowResults(true);
     setResults(correctCharCount);
     setWordsTyped([]);

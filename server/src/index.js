@@ -9,7 +9,7 @@ const Results = require('./models/results');
 const helpers = require('./helpers');
 
 require('dotenv').config();
-mongoose.connect(process.env.MONGO_URl, {
+mongoose.connect(process.env.MONGO_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true 
     });
