@@ -8,6 +8,6 @@ Built on a React Frontend and an Express Node Backend which stores all of the in
 
 **Demo**
   
-  <img src="https://github.com/melansonS/Unsplash-API/blob/master/public/Unsplash-display-responsie-demo.gif" alt="drawing" width="800"/>
+  <img src="https://raw.githubusercontent.com/melansonS/typing-test/master/typing-test.gif?token=ALHOCD2PHEB3PKGU2VRNA5K7TRZ4K" alt="typing" width="800"/>
 
 ## 
