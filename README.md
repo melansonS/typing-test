@@ -1,13 +1,9 @@
 # Typing Test
 
-Put your fingers to the test! See how fast you really are as you compete for a spot at the top of the leader board and keep track of your stats as you hone your skills!
+I wish I were really good at typing. And considering how much typing I've done, and will do, in my life, I really should put a little time into practicing good typing habits. This project was built with that in mind and so the goals were to design and build a smooth, straightforward typing experience with minimal distraction. I wanted for it to keep track of personal progress by storing the local results and I really like the idea of a global leaderboard to store and display the top scores.
 
-Built on a React Frontend and an Express Node Backend which stores all of the incoming results on a Mongo DB using Mongoose.
+Built using HTML, CSS, React, NodeJs and Mongo-Mongoose to store user results.
 
-**Try it here:** _https://typing-test-ten.vercel.app/_
+**Try it here:** [_https://typing-test-ten.vercel.app/_](https://typing-test-ten.vercel.app/)
 
-**Demo**
-  
-  <img src="https://raw.githubusercontent.com/melansonS/typing-test/master/typing-test.gif?token=ALHOCD2PHEB3PKGU2VRNA5K7TRZ4K" alt="typing" width="800"/>
-
-## 
+![demo gif](https://raw.githubusercontent.com/melansonS/typing-test/master/typing-test.gif?token=ALHOCD2PHEB3PKGU2VRNA5K7TRZ4K "demo")
