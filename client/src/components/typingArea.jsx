@@ -110,8 +110,8 @@ const TypingArea = (props) => {
     }
 
     const charIndex = e.target.value.length - 1;
-    const typedChar = e.target.value[charIndex] 
-      ? e.target.value[charIndex].toLowerCase() 
+    const typedChar = e.target.value[charIndex]
+      ? e.target.value[charIndex].toLowerCase()
       : null;
     if (typedChar === currentWord[charIndex]) {
       setCorrectCharCount(correctCharCount + 1);
@@ -182,7 +182,7 @@ const TypingArea = (props) => {
                   {currentWord && currentWord.split('').map((char, index) => {
                     let newClassName = 'current-word-char';
                     const typedChar = inputValue.split('')[index]
-                      ? inputValue.split('')[index].toLowerCase() 
+                      ? inputValue.split('')[index].toLowerCase()
                       : null;
                     if (char === typedChar) {
                       newClassName += ' correct-character';

@@ -34,23 +34,23 @@ const Results = (props) => {
         %
       </div>
       {incorrectWords[0] && (
-      <div>
-        <h4 className="error-header">
-          Errors: (
-          {incorrectWords.length}
-          )
-        </h4>
-        <ul className="errors-list">
-          {incorrectWords.map((word) => (
-            <li key={`li-${nanoid()}`}>
-              {word.correct}
-              :
-              {' '}
-              <span className="incorrect-word">{word.typed}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+        <div>
+          <h4 className="error-header">
+            Errors: (
+            {incorrectWords.length}
+            )
+          </h4>
+          <ul className="errors-list">
+            {incorrectWords.map((word) => (
+              <li key={`li-${nanoid()}`}>
+                {word.correct}
+                :
+                {' '}
+                <span className="incorrect-word">{word.typed}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );
