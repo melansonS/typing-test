@@ -38,37 +38,37 @@ const LocalStats = (props) => {
         />
       </div>
       {localStats && (
-      <>
-        <div className="stat-details">
-          {' '}
-          Best:
-          <span className="stat-value">
-            {localStats.reduce((a, b) => ((a.wpm > b.wpm) ? a : b)).wpm}
-          </span>
-        </div>
-        {localStats.length > 1 && (
+        <>
           <div className="stat-details">
             {' '}
-            Average:
+            Best:
             <span className="stat-value">
-              {Math.round(localStats.reduce((a, b) => ((typeof a.wpm === 'number' || a) + b.wpm)) / localStats.length)}
+              {localStats.reduce((a, b) => ((a.wpm > b.wpm) ? a : b)).wpm}
             </span>
           </div>
-        )}
+          {localStats.length > 1 && (
+            <div className="stat-details">
+              {' '}
+              Average:
+              <span className="stat-value">
+                {Math.round(localStats.reduce((a, b) => ((typeof a.wpm === 'number' || a) + b.wpm)) / localStats.length)}
+              </span>
+            </div>
+          )}
 
-        <ul>
-          {localStats.slice(0, 5).map((stat) => (
-            <li key={`li-${nanoid()}`}>
-              {stat.name}
-              {' '}
-              -
-              {' '}
-              {stat.wpm}
-              {stat.diff && (<ResultsDifference diff={stat.diff} />)}
-            </li>
-          ))}
-        </ul>
-      </>
+          <ul>
+            {localStats.slice(0, 5).map((stat) => (
+              <li key={`li-${nanoid()}`}>
+                {stat.name}
+                {' '}
+                -
+                {' '}
+                {stat.wpm}
+                {stat.diff && (<ResultsDifference diff={stat.diff} />)}
+              </li>
+            ))}
+          </ul>
+        </>
       )}
 
     </div>

@@ -1,4 +1,4 @@
-const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:2000' : "PRODUCTION SERVER";
+const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:2000' : 'https://typing-test-server.onrender.com';
 
 export const getMostRecent = async (id) => {
   const response = await fetch(`${API_URL}/most-recent`, {

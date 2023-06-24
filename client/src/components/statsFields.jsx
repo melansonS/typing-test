@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from "react";
-import _ from "lodash";
-import PropTypes from "prop-types";
-import "./statsFields.css";
+import React, { useCallback, useEffect, useState } from 'react';
+import _ from 'lodash';
+import PropTypes from 'prop-types';
+import './statsFields.css';
 
 const StatsFields = (props) => {
   const { characters, seconds } = props;
@@ -11,7 +11,7 @@ const StatsFields = (props) => {
     _.debounce((chars) => {
       setDebouncedCharacters(chars);
     }, 500),
-    []
+    [],
   );
 
   useEffect(() => {
